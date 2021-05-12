@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">UsoApiRestJava</string>
+    <string name="endpointEmployees">http://dummy.restapiexample.com/api/v1/</string>
+</resources>
