@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 Response<EmployeeResponse> call = getRetrofit().create(APIService.class).getEmployees("employees").execute();
                 System.out.println("**********************2");
                 response_empleados = call.body();
+                lista_empleados = response_empleados.getData();
                 cargarEmpleadosBD();
             } catch (IOException e) {
                 e.printStackTrace();
