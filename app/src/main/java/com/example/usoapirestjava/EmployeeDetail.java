@@ -40,8 +40,8 @@ public class EmployeeDetail extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             tv1.setText(employeeEntity.getEmployee_name());
-            tv2.setText(Integer.toString(employeeEntity.getEmployee_age()));
-            tv3.setText(Integer.toString(employeeEntity.getEmployee_salary()));
+            tv2.setText("Age: " + Integer.toString(employeeEntity.getEmployee_age()));
+            tv3.setText("Salary: " + Integer.toString(employeeEntity.getEmployee_salary()));
         }
     }
 
