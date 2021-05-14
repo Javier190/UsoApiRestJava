@@ -46,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                System.out.println("**********************1");
                 Response<EmployeeResponse> call = getRetrofit().create(APIService.class).getEmployees("employees").execute();
-                System.out.println("**********************2");
                 response_empleados = call.body();
                 lista_empleados = response_empleados.getData();
                 cargarEmpleadosBD();
@@ -58,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
+        //Agregar empleados a tabla employee_entity ROOM y se agregan uno por uno
         private void cargarEmpleadosBD() {
             try {
-                //Agregar empleados a tabla employee_entity
                 for (int i = 0; i < lista_empleados.size(); i++) {
                     EmployeeApp.databaseApp.employeeDAO().addEmployee(new EmployeeEntity(
                                     lista_empleados.get(i).getId(),

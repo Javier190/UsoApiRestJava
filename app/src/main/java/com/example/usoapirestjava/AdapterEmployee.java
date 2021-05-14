@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -30,10 +32,25 @@ public class AdapterEmployee extends RecyclerView.Adapter<AdapterEmployee.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //final Employee employee = employees_list.get(position);
+
         try {
-            holder.nombre.setText(employees_list.get(position).getEmployee_name());
-            holder.salary.setText(Integer.toString(employees_list.get(position).getEmployee_salary()));
+            holder.id.setText("ID: " + Integer.toString(employees_list.get(position).getId()));
+            holder.nombre.setText("Name: " +employees_list.get(position).getEmployee_name());
+            holder.salary.setText("Salary: $" +Integer.toString(employees_list.get(position).getEmployee_salary()));
+            holder.age.setText("Age: " +Integer.toString(employees_list.get(position).getEmployee_age()) + " years");
+
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "Empleado: " + employees_list.get(position).getEmployee_name(), Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, EmployeeDetail.class)
+                            .putExtra("id",employees_list.get(position).getId())
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    );
+                }
+            });
         } catch(Exception e) {
             e.printStackTrace();
         }
